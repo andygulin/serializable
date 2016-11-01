@@ -19,4 +19,5 @@ public abstract class BaseTest {
 	protected void print(Object obj) {
 		logger.info(obj);
 	}
+
 }

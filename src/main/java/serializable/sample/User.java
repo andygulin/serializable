@@ -13,18 +13,18 @@ public class User implements Serializable {
 	private String name;
 	private Integer age;
 	private String address;
-	private Date createAt;
+	private Date createdAt;
 
 	public User() {
 	}
 
-	public User(Integer id, String name, Integer age, String address, Date createAt) {
+	public User(Integer id, String name, Integer age, String address, Date createdAt) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.age = age;
 		this.address = address;
-		this.createAt = createAt;
+		this.createdAt = createdAt;
 	}
 
 	public Integer getId() {
@@ -59,12 +59,12 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public Date getCreateAt() {
-		return createAt;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	@Override

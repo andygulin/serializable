@@ -17,7 +17,7 @@
 		<commons-beanutils.version>1.9.3</commons-beanutils.version>
 		<commons-lang3.version>3.4</commons-lang3.version>
 		
-		<protostuff.version>1.0.9</protostuff.version>
+		<protostuff.version>1.0.12</protostuff.version>
 		<kryo.version>2.24.0</kryo.version>
 		<hessian.version>4.0.38</hessian.version>
 		<msgpack.version>0.6.12</msgpack.version>
@@ -87,16 +87,7 @@
 			<artifactId>protostuff-api</artifactId>
 			<version>${protostuff.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.dyuproject.protostuff</groupId>
-			<artifactId>protostuff-model</artifactId>
-			<version>${protostuff.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.dyuproject.protostuff</groupId>
-			<artifactId>protostuff-model-json</artifactId>
-			<version>${protostuff.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>com.esotericsoftware.kryo</groupId>
 			<artifactId>kryo</artifactId>
