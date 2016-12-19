@@ -7,6 +7,6 @@
 		{"name" : "name" , "type" : "string"},
 		{"name" : "age" , "type" : "int"},
 		{"name" : "address" , "type" : "string"},
-		{"name" : "createAt" , "type" : "long"}
+		{"name" : "createdAt" , "type" : "long"}
 	]
 }

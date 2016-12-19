@@ -1,22 +1,21 @@
 package serializable.sample;
 
-import org.junit.Test;
-
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtobufIOUtil;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
+import org.junit.Test;
 
 public class ProtostuffTest extends BaseTest {
 
-	@Test
-	public void protostuff() {
-		// 序列化
-		byte[] userData = ProtobufIOUtil.toByteArray(user, RuntimeSchema.getSchema(User.class),
-				LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE));
+    @Test
+    public void protostuff() {
+        // 序列化
+        byte[] userData = ProtobufIOUtil.toByteArray(user, RuntimeSchema.getSchema(User.class),
+                LinkedBuffer.allocate(LinkedBuffer.DEFAULT_BUFFER_SIZE));
 
-		// 反序列化
-		User user = new User();
-		ProtobufIOUtil.mergeFrom(userData, user, RuntimeSchema.getSchema(User.class));
-		print(user);
-	}
+        // 反序列化
+        User user = new User();
+        ProtobufIOUtil.mergeFrom(userData, user, RuntimeSchema.getSchema(User.class));
+        print(user);
+    }
 }

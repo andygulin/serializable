@@ -1,14 +1,5 @@
 package serializable.sample;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
 import org.apache.avro.Schema;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
@@ -25,53 +16,62 @@ import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
 public class AvroTest extends BaseTest {
 
-	@Test
-	public void avro() throws IOException, ReflectiveOperationException {
-		// 序列化
-		Resource resource = new ClassPathResource("user.avro");
-		Schema schema = new Schema.Parser().parse(resource.getFile());
-		GenericRecord record = new GenericData.Record(schema);
-		toRecord(record, user);
+    @Test
+    public void avro() throws IOException, ReflectiveOperationException {
+        // 序列化
+        Resource resource = new ClassPathResource("user.avro");
+        Schema schema = new Schema.Parser().parse(resource.getFile());
+        GenericRecord record = new GenericData.Record(schema);
+        toRecord(record, user);
 
-		File file = new File(FileUtils.getTempDirectoryPath(), "user.ser");
-		OutputStream os = FileUtils.openOutputStream(file);
-		DatumWriter<GenericRecord> datumWriter = new GenericDatumWriter<GenericRecord>(schema);
-		DataFileWriter<GenericRecord> dataFileWriter = new DataFileWriter<GenericRecord>(datumWriter);
-		dataFileWriter.create(schema, os);
-		dataFileWriter.append(record);
-		dataFileWriter.close();
+        File file = new File(FileUtils.getTempDirectoryPath(), "user.ser");
+        OutputStream os = FileUtils.openOutputStream(file);
+        DatumWriter<GenericRecord> datumWriter = new GenericDatumWriter<>(schema);
+        DataFileWriter<GenericRecord> dataFileWriter = new DataFileWriter<>(datumWriter);
+        dataFileWriter.create(schema, os);
+        dataFileWriter.append(record);
+        dataFileWriter.close();
 
-		// 反序列化
-		DatumReader<GenericRecord> datumReader = new GenericDatumReader<GenericRecord>(schema);
-		DataFileReader<GenericRecord> dataFileReader = new DataFileReader<GenericRecord>(file, datumReader);
-		GenericRecord user = null;
-		while (dataFileReader.hasNext()) {
-			user = dataFileReader.next(user);
-			logger.info(user);
-		}
-		dataFileReader.close();
-	}
+        // 反序列化
+        DatumReader<GenericRecord> datumReader = new GenericDatumReader<>(schema);
+        DataFileReader<GenericRecord> dataFileReader = new DataFileReader<>(file, datumReader);
+        GenericRecord user = null;
+        while (dataFileReader.hasNext()) {
+            user = dataFileReader.next(user);
+            logger.info(user);
+        }
+        dataFileReader.close();
+    }
 
-	private void toRecord(GenericRecord record, User user) throws ReflectiveOperationException {
-		List<Field> fields = FieldUtils.getAllFieldsList(User.class);
-		Iterator<Field> iter = fields.iterator();
-		while (iter.hasNext()) {
-			Field field = iter.next();
-			int mod = field.getModifiers();
-			if (Modifier.isStatic(mod) || Modifier.isFinal(mod)) {
-				iter.remove();
-			}
-		}
-		for (Field field : fields) {
-			Class<?> classType = field.getType();
-			String fieldName = field.getName();
-			if (classType == Date.class) {
-				record.put(fieldName, ((Date) PropertyUtils.getProperty(user, fieldName)).getTime());
-			} else {
-				record.put(fieldName, PropertyUtils.getProperty(user, fieldName));
-			}
-		}
-	}
+    private void toRecord(GenericRecord record, User user) throws ReflectiveOperationException {
+        List<Field> fields = FieldUtils.getAllFieldsList(User.class);
+        Iterator<Field> iter = fields.iterator();
+        while (iter.hasNext()) {
+            Field field = iter.next();
+            int mod = field.getModifiers();
+            if (Modifier.isStatic(mod) || Modifier.isFinal(mod)) {
+                iter.remove();
+            }
+        }
+        for (Field field : fields) {
+            Class<?> classType = field.getType();
+            String fieldName = field.getName();
+            if (classType == Date.class) {
+                record.put(fieldName, ((Date) PropertyUtils.getProperty(user, fieldName)).getTime());
+            } else {
+                record.put(fieldName, PropertyUtils.getProperty(user, fieldName));
+            }
+        }
+    }
 }
