@@ -1,7 +1,7 @@
 package serializable.sample;
 
 import org.apache.commons.lang3.SerializationUtils;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 

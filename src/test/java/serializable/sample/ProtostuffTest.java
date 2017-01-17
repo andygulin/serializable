@@ -3,7 +3,7 @@ package serializable.sample;
 import com.dyuproject.protostuff.LinkedBuffer;
 import com.dyuproject.protostuff.ProtobufIOUtil;
 import com.dyuproject.protostuff.runtime.RuntimeSchema;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class ProtostuffTest extends BaseTest {
 

@@ -3,7 +3,7 @@ package serializable.sample;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 

@@ -12,9 +12,9 @@ import org.apache.avro.io.DatumWriter;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
-import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;

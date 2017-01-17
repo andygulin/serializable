@@ -3,7 +3,7 @@ package serializable.sample;
 import com.caucho.hessian.io.HessianInput;
 import com.caucho.hessian.io.HessianOutput;
 import org.apache.commons.io.output.ByteArrayOutputStream;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

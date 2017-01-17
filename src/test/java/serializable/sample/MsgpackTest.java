@@ -1,7 +1,7 @@
 package serializable.sample;
 
-import org.junit.Test;
 import org.msgpack.MessagePack;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 
